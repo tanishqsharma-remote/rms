@@ -7,34 +7,17 @@ import (
 
 var JwtKey = []byte("MyKey")
 
-/*type Person struct {
-	Id        int    `json:"id"`
-	Name      string `json:"name"`
-	Email     string `json:"email"`
-	Password  string `json:"passWord"`
-	CreatedBy int    `json:"createdBy"`
-}
-type PersonDetails struct {
-	Id        int    `json:"id"`
-	Name      string `json:"name"`
-	Email     string `json:"email"`
-	Password  string `json:"passWord"`
-	Role      string `json:"role"`
-	Address   Point  `json:"address"`
-	CreatedBy int    `json:"createdBy"`
-}*/
-
 type PersonList struct {
-	Id        int            `json:"id"`
+	ID        int            `json:"id"`
 	Name      string         `json:"name"`
 	Email     string         `json:"email"`
-	Password  string         `json:"passWord"`
+	Password  string         `json:"password"`
 	Role      string         `json:"role"`
 	Address   sql.NullString `json:"address"`
 	CreatedBy int            `json:"createdBy"`
 }
 type SubAdmin struct {
-	Id    int    `json:"id"`
+	ID    int    `json:"id"`
 	Name  string `json:"name"`
 	Email string `json:"email"`
 	Role  string `json:"role"`
@@ -42,14 +25,14 @@ type SubAdmin struct {
 type UserBySub struct {
 	Name      string `json:"name"`
 	Email     string `json:"email"`
-	Password  string `json:"passWord"`
+	Password  string `json:"password"`
 	Address   Point  `json:"address"`
 	CreatedBy int    `json:"createdBy"`
 }
 type PersonByAdmin struct {
 	Name      string `json:"name"`
 	Email     string `json:"email"`
-	Password  string `json:"passWord"`
+	Password  string `json:"password"`
 	Role      string `json:"role"`
 	Address   Point  `json:"address"`
 	CreatedBy int    `json:"createdBy"`
@@ -57,42 +40,35 @@ type PersonByAdmin struct {
 type NewPerson struct {
 	Name      string `json:"name"`
 	Email     string `json:"email"`
-	Password  string `json:"passWord"`
+	Password  string `json:"password"`
 	CreatedBy int    `json:"createdBy"`
 }
 type NewUser struct {
 	Name     string `json:"name"`
 	Email    string `json:"email"`
-	Password string `json:"passWord"`
+	Password string `json:"password"`
 	Address  Point  `json:"address"`
 }
 type Point struct {
-	X float64 `json:"x"`
-	Y float64 `json:"y"`
+	Lat  float64 `json:"lat"`
+	Long float64 `json:"long"`
 }
 type Distance struct {
-	RId int     `json:"rId"`
-	X   float64 `json:"x"`
-	Y   float64 `json:"y"`
+	RID  int     `json:"rId"`
+	Lat  float64 `json:"lat"`
+	Long float64 `json:"long"`
 }
 type Location struct {
 	SNum    int   `json:"sNum"`
-	PId     int   `json:"pId"`
+	PID     int   `json:"pId"`
 	Address Point `json:"address"`
 }
 
 type Roles struct {
 	SNum int    `json:"sNum"`
-	PId  int    `json:"PId"`
+	PID  int    `json:"PId"`
 	Role string `json:"role"`
 }
-
-/*type Restaurant struct {
-	Id        int    `json:"id"`
-	Name      string `json:"name"`
-	Address   Point  `json:"address"`
-	CreatedBy int    `json:"createdBy"`
-}*/
 
 type NewRestaurant struct {
 	Name      string `json:"name"`
@@ -100,33 +76,28 @@ type NewRestaurant struct {
 	CreatedBy int    `json:"createdBy"`
 }
 type RestaurantList struct {
-	Id      int    `json:"id"`
+	ID      int    `json:"id"`
 	Name    string `json:"name"`
 	Address string `json:"address"`
 }
+
+//todo naming should be better no idea what is x and y
+
 type Pointer struct {
-	X string `json:"x"`
-	Y string `json:"y"`
+	Lat  string `json:"lat"`
+	Long string `json:"long"`
 }
 type RestaurantLister struct {
-	Id      int     `json:"id"`
+	ID      int     `json:"id"`
 	Name    string  `json:"name"`
 	Address Pointer `json:"address"`
 }
 type RestaurantId struct {
-	RId int `json:"rId"`
+	RID int `json:"rId"`
 }
 
-/*type Dish struct {
-	SNum      int    `json:"sNum"`
-	RId       int    `json:"rId"`
-	Name      string `json:"name"`
-	Price     int    `json:"price"`
-	CreatedBy int    `json:"createdBy"`
-}*/
-
 type NewDish struct {
-	RId       int    `json:"rId"`
+	RID       int    `json:"rId"`
 	Name      string `json:"name"`
 	Price     int    `json:"price"`
 	CreatedBy int    `json:"createdBy"`
@@ -141,12 +112,20 @@ type DishList struct {
 	DishName string `json:"dishName"`
 	Price    int    `json:"price"`
 }
+type NewLocation struct {
+	ID      int   `json:"id"`
+	Address Point `json:"address"`
+}
+type NewRole struct {
+	ID   int    `json:"id"`
+	Role string `json:"role"`
+}
 type Credentials struct {
 	Email    string `json:"email"`
 	Password string `json:"passWord"`
 }
 type Authentication struct {
-	Id   string `json:"id"`
+	ID   string `json:"id"`
 	Role string `json:"role"`
 }
 type Token struct {

@@ -13,7 +13,7 @@ import (
 
 func main() {
 
-	db := database_dir.DBconnect()
+	db := database_dir.DbConnect()
 	driver, dbErr := postgres.WithInstance(db, &postgres.Config{})
 	if dbErr != nil {
 		log.Fatal(dbErr)

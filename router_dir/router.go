@@ -10,10 +10,11 @@ func Router() *chi.Mux {
 	r := chi.NewRouter()
 	r.Route("/rms", func(rms chi.Router) {
 		rms.Post("/login", handler_dir.Login)
-		rms.Get("/logout", handler_dir.Logout)
 		rms.Post("/newUser", handler_dir.CreateByUser)
+
 		rms.Route("/home", func(home chi.Router) {
 			home.Use(middleware_dir.AuthMiddleware)
+			home.Get("/logout", handler_dir.Logout)
 			home.Get("/restaurants", handler_dir.GetRestaurant)
 			home.Get("/dishes", handler_dir.GetDishes)
 			home.Get("/distance", handler_dir.GetDistance)
@@ -28,6 +29,8 @@ func Router() *chi.Mux {
 				admin.Post("/csvDish", handler_dir.CreateCsvDish)
 				admin.Post("/newRestaurant", handler_dir.CreateRestaurant)
 				admin.Post("/newRestaurantBulk", handler_dir.CreateBulkRestaurant)
+				admin.Put("/updateLocation", handler_dir.UpdateLocation)
+				admin.Put("/updateRole", handler_dir.UpdateRole)
 
 			})
 			home.Route("/subAdmin", func(subAdmin chi.Router) {
@@ -40,6 +43,8 @@ func Router() *chi.Mux {
 				subAdmin.Post("/csvDish", handler_dir.CreateCsvDish)
 				subAdmin.Post("/newRestaurant", handler_dir.CreateRestaurant)
 				subAdmin.Post("/newRestaurantBulk", handler_dir.CreateBulkRestaurant)
+				subAdmin.Put("/updateLocation", handler_dir.UpdateLocation)
+				subAdmin.Put("/updateRole", handler_dir.UpdateRole)
 			})
 
 		})

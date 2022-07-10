@@ -1,15 +1,17 @@
 package database_dir
 
 import (
-	"database/sql"
+	//"database/sql"
+	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 	"log"
 )
 
-func DBconnect() *sql.DB {
+func DbConnect() *sqlx.DB {
 	connStr := "user=postgres dbname=postgres password= postgres sslmode=disable"
-	db, err := sql.Open("postgres", connStr)
+	database, err := sqlx.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)
 	}
-	return db
+	return database
 }
